@@ -15,7 +15,6 @@ setup(
     version="0.0.1",
     author="Clif Wolfe",
     description=("Usability enhancements for python's ctypes module"),
-    license="BSD",
     keywords="ctypes",
     packages=['ctypes_utils'],
     long_description=read('README.md'),
