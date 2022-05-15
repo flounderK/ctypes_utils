@@ -28,10 +28,10 @@ class NiceHexFieldRepr:
         return "\n".join(ret)
 
 
-def gen_enum_flags_repr(enum_flag_class, attr):
+def gen_enum_flags_repr(enum_flag_class):
     """
     Generate a repr function that will display human readable
-    enum flag values
+    enum flag values. Useful in __repr_map__ fields
     """
     def inner(attr_val):
         members, uncovered = enum._decompose(enum_flag_class, attr_val)
