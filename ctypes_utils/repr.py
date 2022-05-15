@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import _ctypes
+import enum
 
 
 class NiceHexFieldRepr:
@@ -25,3 +26,17 @@ class NiceHexFieldRepr:
             else:
                 ret.append("%s: %s" % (k, bytes(attr)))
         return "\n".join(ret)
+
+
+def gen_enum_flags_repr(enum_flag_class, attr):
+    """
+    Generate a repr function that will display human readable
+    enum flag values
+    """
+    def inner(inst):
+        attr_val = getattr(inst, attr)
+        members, uncovered = enum._decompose(enum_flag_class, attr_val)
+        member_repr = '|'.join([i.name for i in members])
+        rep = "%s: %#x" % (member_repr, attr_val)
+        return rep
+    return inner
