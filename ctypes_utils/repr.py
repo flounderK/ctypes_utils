@@ -33,8 +33,7 @@ def gen_enum_flags_repr(enum_flag_class, attr):
     Generate a repr function that will display human readable
     enum flag values
     """
-    def inner(inst):
-        attr_val = getattr(inst, attr)
+    def inner(attr_val):
         members, uncovered = enum._decompose(enum_flag_class, attr_val)
         member_repr = '|'.join([i.name for i in members])
         rep = "%s: %#x" % (member_repr, attr_val)
