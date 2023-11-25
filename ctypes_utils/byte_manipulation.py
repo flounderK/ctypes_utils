@@ -30,7 +30,7 @@ def cast_ctype_from_bytearray(ctype, byte_array, offset=0):
     if not hasattr(ctype, '__bases__'):
         ctype = type(ctype)
     byte_array = bytearray(byte_array)
-    memory = (c_ubyte*len(byte_array)).from_buffer(byte_array, offset)
+    memory = (c_ubyte*sizeof(ctype)).from_buffer(byte_array, offset)
     return cast(memory, POINTER(ctype)).contents
     # previous implementation was smaller, but could not effectively
     # perform casts on normal ctypes base types, e.g. c_uint32
